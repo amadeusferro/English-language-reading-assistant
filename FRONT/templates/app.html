@@ -21,35 +21,37 @@
 
         <div class="accordion" id="accordionPanelsStayOpenExample">
 
+
+          {% for word in my_book %}
+          {% set counter = counter + 1 %}
           
           <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-heading0">
+            <h2 class="accordion-header" id="panelsStayOpen-heading_{{ loop.index }}">
               <button
                 class="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapse0"
+                data-bs-target="#panelsStayOpen-collapse_{{ loop.index }}"
                 aria-expanded="false"
-                aria-controls="panelsStayOpen-collapse0">
-                Word #342
+                aria-controls="panelsStayOpen-collapse_{{ loop.index }}">
+                {{ word.word}} #{{ word.occurence}}
               </button>
             </h2>
             <div
-              id="panelsStayOpen-collapse0"
+              id="panelsStayOpen-collapse_{{ loop.index }}"
               class="accordion-collapse collapse"
-              aria-labelledby="panelsStayOpen-heading0"
+              aria-labelledby="panelsStayOpen-heading_{{ loop.index }}"
               data-bs-parent="#accordionPanelsStayOpenExample">
               <div class="accordion-body">
-                <strong>Category: </strong>VERB<br/>
-                <strong>Ocorrence: </strong>342 times<br/>
-                <strong>Meaning: </strong> Lorem ipsum dolor sit
-                amet, consectetur adipisicing elit. Nobis, expedita est hic
-                iusto odit eligendi quisquam ipsa ratione qui neque eveniet et
-                dolorum veritatis dolorem explicabo animi enim delectus
-                reprehenderit!
+                <strong>Category: </strong>{{ word.category}}<br/>
+                <strong>Ocorrence: </strong>{{ word.occurence}}<br/>
+                <strong>Meaning: </strong> {{ word.meaning}}
               </div>
             </div>
           </div>
+
+
+          {% endfor %}
 
 
         </div>

@@ -175,11 +175,11 @@ def downloadList(list):
 
 
 
-#principal (main)
-def main():
-    file_path = "pdfs/example.pdf"
-    my_book = en_reading_assistant(file_path)
-    downloadList(my_book)
+# #principal (main)
+# def main():
+#     file_path = "pdfs/example.pdf"
+#     my_book = en_reading_assistant(file_path)
+#     downloadList(my_book)
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

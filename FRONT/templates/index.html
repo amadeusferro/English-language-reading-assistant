@@ -16,7 +16,7 @@
         <header>English Language<br/>Reading Assistant</header>
         <p class="info">Scan your book in PDF format to discover the most frequent words that you should learn!</p>
 
-          <form action="#">
+          <form action="/upload" method="post" enctype="multipart/form-data">
             <input class="file-input" type="file" accept="application/pdf" name="file" hidden>
             <i class="fas fa-cloud-upload-alt"></i>
             <p>Browse PDF File to Upload</p>
