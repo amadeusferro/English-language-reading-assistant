@@ -15,11 +15,11 @@ nltk.download('punkt')
 
 #defines WordFactory class
 class WordFactory:
-    def __init__(self, words_list): #receives (word, occurence) as parameter
+    def __init__(self, words_list): #receives (word, occurrence) as parameter
         self.word = words_list[0]
         self.category = categorize(words_list[0])
         self.meaning = get_meaning(words_list[0]) 
-        self.occurence = words_list[1]
+        self.occurrence = words_list[1]
 
 
 
@@ -82,10 +82,10 @@ def lemmatize(list):
 
 
 #returns an array of tuples, with word and occurrence number sorted by frequency
-def get_occurence(list):
+def get_occurrence(list):
     counter = Counter(list)
-    word_and_occurence_tuple_list = sorted(counter.items(), key=lambda x: x[1], reverse=True)
-    return word_and_occurence_tuple_list
+    word_and_occurrence_tuple_list = sorted(counter.items(), key=lambda x: x[1], reverse=True)
+    return word_and_occurrence_tuple_list
 
 
 
@@ -129,11 +129,11 @@ def en_reading_assistant(file_path):
     pdf_content = read_pdf(file_path)
     tokenized_words = tokenize(pdf_content)
     lemmatized_words = lemmatize(tokenized_words)
-    word_and_occurence_tuple_list = get_occurence(lemmatized_words) #[(word_1, occurence_1), (word_2, occurence_2), ...(word_n, occurence_n)]
+    word_and_occurrence_tuple_list = get_occurrence(lemmatized_words) #[(word_1, occurrence_1), (word_2, occurrence_2), ...(word_n, occurrence_n)]
     instantiated_words_list = []
 
-    for word_occurence in word_and_occurence_tuple_list:
-        word_instance = WordFactory(word_occurence)
+    for word_occurrence in word_and_occurrence_tuple_list:
+        word_instance = WordFactory(word_occurrence)
         if word_instance.meaning != "UNKNOWN MEANING" and word_instance.category != "UNKNOWN CATEGORY" and (word_instance.category == "Verb" or word_instance.category == "Adverb" or word_instance.category == "Noun" or word_instance.category == "Adjective"): #only accepts verbs, nouns, adjectives and adverbs; Doesn't accept unknown meaning and category
             instantiated_words_list.append(word_instance)
         else:
@@ -148,38 +148,25 @@ def downloadList(list):
         f.write("-------------------------------------------------------------------------------\n")
 
         for word in list:
-            updated_word = word.word[0].upper() + word.word[1:] #puts the first character in capital
-            f.write(updated_word + " #" + str(word.occurence) + "\n")
+            f.write(word.word + " #" + str(word.occurrence) + "\n")
 
             f.write("Category: " + word.category +"\n")
 
             #writes the occurrence in a better way
-            if word.occurence == 1:
-                f.write("Ocorrence: Once\n")
-            elif word.occurence == 2:
-                f.write("Ocorrence: Twice\n")
+            if word.occurrence == 1:
+                f.write("Occurrence: Once\n")
+            elif word.occurrence == 2:
+                f.write("Occurrence: Twice\n")
             else:
-                f.write("Ocorrence: " + str(word.occurence) + " times\n")
+                f.write("Occurrence: " + str(word.occurrence) + " times\n")
 
             #writes each meaning
             i = 1
             f.write("Meaning:\n" )
             for meaning in word.meaning:
-                updated_meaning = meaning[0].upper() + meaning[1:] #puts the first character in capital
-                f.write(str(i) + " - " + updated_meaning)
+                f.write(str(i) + " - " + meaning)
                 f.write(";\n")
                 i += 1
             f.write("-------------------------------------------------------------------------------\n")
     f.close()
     print("List Downloaded!")
-
-
-
-# #principal (main)
-# def main():
-#     file_path = "pdfs/example.pdf"
-#     my_book = en_reading_assistant(file_path)
-#     downloadList(my_book)
-
-# if __name__ == "__main__":
-#     main()

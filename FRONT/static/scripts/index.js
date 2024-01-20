@@ -11,6 +11,7 @@ fileInput.onchange = ({ target }) => {
     if (file.type === "application/pdf") {
       wrapper.style.display = "none";
       loadingRing.style.display = "inline-block";
+      form.submit();
     } else {
       console.log("O arquivo não é um PDF");
     }

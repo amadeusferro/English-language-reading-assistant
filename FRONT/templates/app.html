@@ -17,10 +17,9 @@
           familiar with the most frequently used words for comprehending such
           content in the target foreign language.<br/>Below are the words that
           appear in your PDF, sorted by occurrence, along with their meanings.</p>
-        <button class="download-button" type="button">Download List</button>
-
+          <a href="/" class="return-button">Upload Another File</a>
+          <a href="#" class="download-link"><button class="download-button" type="button">Download List</button></a>
         <div class="accordion" id="accordionPanelsStayOpenExample">
-
 
           {% for word in my_book %}
           {% set counter = counter + 1 %}
@@ -34,7 +33,7 @@
                 data-bs-target="#panelsStayOpen-collapse_{{ loop.index }}"
                 aria-expanded="false"
                 aria-controls="panelsStayOpen-collapse_{{ loop.index }}">
-                {{ word.word}} #{{ word.occurence}}
+                {{ word.word}} #{{ word.occurrence}}
               </button>
             </h2>
             <div
@@ -44,15 +43,23 @@
               data-bs-parent="#accordionPanelsStayOpenExample">
               <div class="accordion-body">
                 <strong>Category: </strong>{{ word.category}}<br/>
-                <strong>Ocorrence: </strong>{{ word.occurence}}<br/>
-                <strong>Meaning: </strong> {{ word.meaning}}
+                <strong>Occurrence: </strong>
+                {% if word.occurrence == 1 %}
+                Once<br>
+                {% elif word.occurrence == 2 %}
+                Twice<br>
+                {% else %}
+                {{ word.occurrence }} times<br/>
+                {% endif %}
+                <strong>Meaning:</strong><br/>
+                {% for meaning in word.meaning %}
+                {{ loop.index }} - {{ meaning }};<br/>
+                {% endfor %}
               </div>
             </div>
           </div>
 
-
           {% endfor %}
-
 
         </div>
         <p class="about">Developed by <a href="https://github.com/amadeusferro" target="_blank">Amadeus Ferro</a></p>
