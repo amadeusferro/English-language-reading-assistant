@@ -18,7 +18,7 @@
           content in the target foreign language.<br/>Below are the words that
           appear in your PDF, sorted by occurrence, along with their meanings.</p>
           <a href="/" class="return-button">Upload Another File</a>
-          <a href="#" class="download-link"><button class="download-button" type="button">Download List</button></a>
+          <a href="{{ url_for('download_list') }}" class="download-link"><button class="download-button" type="button">Download List</button></a>
         <div class="accordion" id="accordionPanelsStayOpenExample">
 
           {% for word in my_book %}

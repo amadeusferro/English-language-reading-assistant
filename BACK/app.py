@@ -142,7 +142,7 @@ def en_reading_assistant(file_path):
 
 
 
-def downloadList(list):
+def generateDownloadList(list):
     i = 1
     with open("Vocabulary List.txt", "w", encoding="utf-8") as f:
         f.write("-------------------------------------------------------------------------------\n")
