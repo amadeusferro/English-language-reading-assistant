@@ -7,9 +7,6 @@ from nltk import pos_tag
 from collections import Counter
 from nltk.corpus import wordnet
 from nltk.corpus import stopwords
-nltk.download('universal_tagset')
-nltk.download('stopwords')
-nltk.download('punkt')
 
 
 
