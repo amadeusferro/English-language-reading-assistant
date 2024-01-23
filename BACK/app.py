@@ -10,6 +10,7 @@ from nltk.corpus import stopwords
 nltk.download('universal_tagset')
 nltk.download('stopwords')
 nltk.download('punkt')
+nltk.download('wordnet')
 
 
 
